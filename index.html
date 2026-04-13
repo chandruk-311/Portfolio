@@ -23,10 +23,34 @@
       }
 
       /* NAVBAR */
-      nav {
-        height: 70px;
-      }
+      /* Hamburger Animation */
+.bar {
+  transition: all 0.4s ease;
+}
 
+.open .bar:nth-child(1) {
+  transform: rotate(45deg) translateY(6px);
+}
+
+.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translateY(-6px);
+}
+
+/* Mobile Menu Animation */
+#mobileMenu {
+  transition: all 0.4s ease;
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+#mobileMenu.show {
+  transform: translateY(0);
+  opacity: 1;
+}
       /* TEXT */
       .gradient-text {
         background: linear-gradient(90deg, #3b82f6, #9333ea);
@@ -321,6 +345,25 @@
     </footer>
 
     <script>
+
+      // Mobile Menu Toggle
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuBtn.addEventListener("click", () => {
+  mobileMenu.classList.toggle("hidden");
+  mobileMenu.classList.toggle("show");
+  menuBtn.classList.toggle("open");
+});
+
+// Auto close when clicking link
+document.querySelectorAll("#mobileMenu a").forEach(link => {
+  link.addEventListener("click", () => {
+    mobileMenu.classList.add("hidden");
+    mobileMenu.classList.remove("show");
+    menuBtn.classList.remove("open");
+  });
+});
       gsap.registerPlugin(ScrollTrigger);
 
       new Typed("#typing", {
