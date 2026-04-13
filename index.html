@@ -23,34 +23,10 @@
       }
 
       /* NAVBAR */
-      /* Hamburger Animation */
-.bar {
-  transition: all 0.4s ease;
-}
+      nav {
+        height: 70px;
+      }
 
-.open .bar:nth-child(1) {
-  transform: rotate(45deg) translateY(6px);
-}
-
-.open .bar:nth-child(2) {
-  opacity: 0;
-}
-
-.open .bar:nth-child(3) {
-  transform: rotate(-45deg) translateY(-6px);
-}
-
-/* Mobile Menu Animation */
-#mobileMenu {
-  transition: all 0.4s ease;
-  transform: translateY(-20px);
-  opacity: 0;
-}
-
-#mobileMenu.show {
-  transform: translateY(0);
-  opacity: 1;
-}
       /* TEXT */
       .gradient-text {
         background: linear-gradient(90deg, #3b82f6, #9333ea);
@@ -112,123 +88,19 @@
   </head>
 
   <body>
-    <!-- NAVBAR -->
-<nav class="sticky top-0 bg-black/50 backdrop-blur z-50">
-  <div class="max-w-7xl mx-auto flex justify-between items-center px-6 h-[70px]">
-    <!-- NAVBAR START -->
-
-<nav class="sticky top-0 bg-black/50 backdrop-blur z-50">
-  <div class="max-w-7xl mx-auto flex justify-between items-center px-6 h-[70px]">
-
-```
-<!-- Logo -->
-<h1 class="gradient-text font-bold">CHANDRU K</h1>
-
-<!-- Desktop Menu -->
-<div class="hidden md:flex space-x-6 text-sm">
-  <a href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#skills">Skills</a>
-  <a href="#projects">Projects</a>
-  <a href="#contact">Contact</a>
-</div>
-
-<!-- Hamburger Button -->
-<button id="menuBtn" class="md:hidden flex flex-col gap-1">
-  <span class="bar w-6 h-0.5 bg-white"></span>
-  <span class="bar w-6 h-0.5 bg-white"></span>
-  <span class="bar w-6 h-0.5 bg-white"></span>
-</button>
-```
-
-  </div>
-
-  <!-- Mobile Menu -->
-
-  <div id="mobileMenu" class="md:hidden hidden flex-col text-center bg-black/90">
-    <a href="#home" class="menu-item py-3 border-b border-gray-700">Home</a>
-    <a href="#about" class="menu-item py-3 border-b border-gray-700">About</a>
-    <a href="#skills" class="menu-item py-3 border-b border-gray-700">Skills</a>
-    <a href="#projects" class="menu-item py-3 border-b border-gray-700">Projects</a>
-    <a href="#contact" class="menu-item py-3">Contact</a>
-  </div>
-</nav>
-
-<style>
-/* Hamburger animation */
-.bar { transition: 0.4s; }
-.open .bar:nth-child(1){ transform: rotate(45deg) translateY(6px); }
-.open .bar:nth-child(2){ opacity: 0; }
-.open .bar:nth-child(3){ transform: rotate(-45deg) translateY(-6px); }
-
-/* Mobile menu animation */
-#mobileMenu {
-  transition: 0.4s;
-  transform: translateY(-20px);
-  opacity: 0;
-}
-#mobileMenu.show {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* Menu items (for stagger) */
-.menu-item {
-  opacity: 0;
-  transform: translateY(20px);
-}
-</style>
-
-<script>
-const menuBtn = document.getElementById("menuBtn");
-const mobileMenu = document.getElementById("mobileMenu");
-const menuItems = document.querySelectorAll(".menu-item");
-
-menuBtn.addEventListener("click", () => {
-  mobileMenu.classList.toggle("hidden");
-  mobileMenu.classList.toggle("show");
-  menuBtn.classList.toggle("open");
-
-  // stagger animation
-  if (!mobileMenu.classList.contains("hidden")) {
-    menuItems.forEach((item, index) => {
-      setTimeout(() => {
-        item.style.opacity = "1";
-        item.style.transform = "translateY(0)";
-      }, index * 120);
-    });
-  } else {
-    // reset
-    menuItems.forEach((item) => {
-      item.style.opacity = "0";
-      item.style.transform = "translateY(20px)";
-    });
-  }
-});
-
-// auto close when click
-document.querySelectorAll("#mobileMenu a").forEach(link => {
-  link.addEventListener("click", () => {
-    mobileMenu.classList.add("hidden");
-    mobileMenu.classList.remove("show");
-    menuBtn.classList.remove("open");
-  });
-});
-</script>
-
-<!-- NAVBAR END -->
-
-  </div>
-
-  <!-- Mobile Menu -->
-  <div id="mobileMenu" class="md:hidden hidden flex-col text-center bg-black/90">
-    <a href="#home" class="py-3 border-b border-gray-700">Home</a>
-    <a href="#about" class="py-3 border-b border-gray-700">About</a>
-    <a href="#skills" class="py-3 border-b border-gray-700">Skills</a>
-    <a href="#projects" class="py-3 border-b border-gray-700">Projects</a>
-    <a href="#contact" class="py-3">Contact</a>
-  </div>
-</nav>
+    <!-- NAVBAR (NOT FIXED → NO OVERLAP) -->
+    <nav class="sticky top-0 bg-black/50 backdrop-blur z-50 flex items-center">
+      <div class="max-w-7xl mx-auto flex justify-between px-6 w-full">
+        <h1 class="gradient-text font-bold">CHANDRU K</h1>
+        <div class="space-x-4 text-sm">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
 
     <!-- HOME -->
     <section id="home" class="min-h-screen flex items-center px-6">
@@ -429,25 +301,6 @@ document.querySelectorAll("#mobileMenu a").forEach(link => {
     </footer>
 
     <script>
-
-      // Mobile Menu Toggle
-const menuBtn = document.getElementById("menuBtn");
-const mobileMenu = document.getElementById("mobileMenu");
-
-menuBtn.addEventListener("click", () => {
-  mobileMenu.classList.toggle("hidden");
-  mobileMenu.classList.toggle("show");
-  menuBtn.classList.toggle("open");
-});
-
-// Auto close when clicking link
-document.querySelectorAll("#mobileMenu a").forEach(link => {
-  link.addEventListener("click", () => {
-    mobileMenu.classList.add("hidden");
-    mobileMenu.classList.remove("show");
-    menuBtn.classList.remove("open");
-  });
-});
       gsap.registerPlugin(ScrollTrigger);
 
       new Typed("#typing", {
